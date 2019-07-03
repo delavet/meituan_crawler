@@ -1,0 +1,78 @@
+{
+    "avgPrice": 122,
+    "avgScore": 4,
+    "cateName": "江西菜",
+    "channel": "food",
+    "showType": "",
+    "frontImg": "//p1.meituan.net/mogu/5f5b74da687667ad427dc958a5d7e4e2292340.jpg",
+    "lat": 39.979515,
+    "lng": 116.305553,
+    "name": "58号花园",
+    "poiid": "4225765",
+    "areaName": "中关村",
+    "poiImgExtra": {},
+    "extraServiceTags": [
+        {
+            "icon": "",
+            "text": {
+                "content": "支持预订",
+                "color": "#6cbab2",
+                "backgroundColor": ""
+            }
+        }
+    ],
+    "rotationTags": [],
+    "smartTags": [
+        {
+            "icon": "",
+            "text": {
+                "content": "全城江西菜第2名",
+                "color": "#be9e4d",
+                "backgroundColor": "#fbf4e4",
+                "borderColor": ""
+            }
+        },
+        {
+            "icon": "",
+            "text": {
+                "content": "包间可订",
+                "color": "#be9e4d",
+                "backgroundColor": "#fbf4e4",
+                "borderColor": ""
+            }
+        }
+    ],
+    "openHours": {
+        "icon": "http://p1.meituan.net/codeman/f7b9ae2c385a03e4a61beb2f4a1e082b1213.png",
+        "text": {
+            "content": "当前人气84",
+            "color": "",
+            "backgroundColor": "",
+            "borderColor": ""
+        }
+    },
+    "preferentialInfo": {
+        "hiddenNumber": 0,
+        "maidan": {
+            "defaultShowNum": 1,
+            "entries": [
+                {
+                    "discount": "",
+                    "discountColor": "#ff8822",
+                    "content": "95代100元",
+                    "icon": "http://p1.meituan.net/codeman/5b202af2ecf82c69a433a246296ca4791278.png",
+                    "promotion": "",
+                    "hasBorder": 0,
+                    "borderColor": ""
+                }
+            ]
+        },
+        "combo": {
+            "defaultShowNum": 0,
+            "entries": []
+        }
+    },
+    "ctPoi": "258827047357543871969565793342956101751_a4225765_c8_e18289896914140758670",
+    "extraServiceIcons": [],
+    "distance": "477m"
+}
