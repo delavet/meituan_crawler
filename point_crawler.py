@@ -5,6 +5,7 @@ import pickle
 import time
 import re,sys
 import string
+from ip_modifier import change_ip
 from comment_crawler import comment_crawler
 
 
@@ -96,6 +97,9 @@ class point_crawler:
             print(e)
             print("=====exception message=====")
             print(r.text)
+            jsn = dict(json.loads(r.text))
+            if 'code' in jsn.keys() and jsn['code']==406:
+                raise Exception("+++++NEED TO CHANGE IP ADDRESS+++++")
 
     
     def crawl_point(self):
@@ -104,8 +108,15 @@ class point_crawler:
         rf.close()
         with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl') as data_f:
             for p in range(20):
-                get_result_json(p)
-                time.sleep(5)
+                success_label = True
+                while success_label:
+                    try:
+                        get_result_json(p)
+                        success_label = False
+                    except Exception as e:
+                        change_ip()
+                        time.sleep(7)
+                time.sleep(7)
             for id, info in self.restaurants.items():
                 if id in ids:
                     self.restaurants.pop(id)

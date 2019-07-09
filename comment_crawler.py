@@ -5,6 +5,7 @@ import pickle
 import time
 import re,sys
 import string
+from ip_modifier import change_ip
 
 
 class comment_crawler:
@@ -15,7 +16,7 @@ class comment_crawler:
         self.poi_id = poi_id
 
     
-    def crawl_poi_comment(self):
+    def real_crawl_poi_comment(self):
         url = constants.meituan_comment
         headers = {
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
@@ -42,6 +43,21 @@ class comment_crawler:
             print(e)
             print("=====exception message=====")
             print(r.text)
+            if 'code' in dict(json.loads(r.text)).keys() and dict(json.loads(r.text))['code'] == 406:
+                raise Exception("++++++NEED TO CHANGE IP ADDRESS+++++")
         finally:
             return ret
+
+    
+    def crawl_poi_comment(self):
+        ret = []
+        success_label = True
+        while success_label:
+            try:
+                ret = real_crawl_poi_comment()
+                success_label = False
+            except Exception as e:
+                change_ip()
+                time.sleep(5)
+        return ret
             
