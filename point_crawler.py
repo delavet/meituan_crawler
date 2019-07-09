@@ -5,6 +5,7 @@ import pickle
 import time
 import re,sys
 import string
+from comment_crawler import comment_crawler
 
 
 class point_crawler:
@@ -82,11 +83,15 @@ class point_crawler:
                     info['smartTags'] = raw_info['smartTags'] if 'smartTags' in raw_info.keys() else []
                     info['openHours'] = raw_info['openHours'] if 'openHours' in raw_info.keys() else {}
                     info['preferentialInfo'] = raw_info['preferentialInfo'] if 'preferentialInfo' in raw_info.keys() else {}
+                    cmt_crawler = comment_crawler(poiid)
+                    comments = cmt_crawler.crawl_poi_comment()
+                    info['comments'] = comments
                     self.restaurants[poiid] = info
                 except Exception as e1:
                     print("!!!!!one unparsable result!!!!!")
                     continue
         except Exception as e:
+            print("=====exception occurs when crawling points=====")
             print("=====the exception reason=====")
             print(e)
             print("=====exception message=====")
