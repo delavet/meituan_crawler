@@ -19,10 +19,12 @@ def try_food():
     print("start request sold list")
     r = requests.post(url, data = data, headers = headers)
     print("request ended")
+    print(r.text)
+    print(str(r.headers))
     with open("sold_list_record", 'w', encoding='utf-8') as wf:
         wf.write(r.text)
         wf.write('\n')
-        wf.write(r.headers)
+        wf.write(str(r.headers))
 
 
 if __name__ == "__main__":
