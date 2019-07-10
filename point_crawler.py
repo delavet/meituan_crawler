@@ -34,9 +34,14 @@ class point_crawler:
         success = True
         msg = CRAWL_SUCCESS
         url = constants.meituan_near_restaurant
+        cookie_str = "ci=1;rvct=1;latlng=" + str(self.latitude) + "," + str(self.longitude) + ";"
+        if constants.uuid != None:
+            cookie_str += "uuid="+constants.uuid+";"
+        if constants.client_id != None:
+            cookie_str += "client-id="+constants.client_id+";"
         headers = {
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
-            "Cookie" : "ci=1;rvct=1;latlng=" + str(self.latitude) + "," + str(self.longitude) + ";",
+            "Cookie" : cookie_str,
             "Referer" : "https://meishi.meituan.com/i/",
             "Accept" : "application/json",
             "Content-Type" : "application/json",
@@ -49,6 +54,14 @@ class point_crawler:
         })
         try:
             r = requests.post(url, headers = headers, data = data)
+            r_headers = r.headers
+            set_cookie = r_headers['Set-Cookie']
+            cookies = set_cookie.split(';')
+            for cookie in cookies:
+                if cookie.startswith("uuid"):
+                    constants.uuid = cookie.split('=')[1]
+                if cookie.startswith("client-id"):
+                    constants.client_id = cookie.split('=')[1]
             print("receive: ", r.text)
             print("receive headers: ", str(r.headers))
             return_msg = json.loads(r.text)

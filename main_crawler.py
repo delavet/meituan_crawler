@@ -19,8 +19,8 @@ def start_crawl():
                 print('=====  OUT SIDE EXCEPTION =====')
                 print(e)
                 print('=====OUTSIDE EXCEPTION END=====')
-            lon += 0.03
-        lat += 0.03
+            lon += 0.04
+        lat += 0.04
 
 
 if __name__ == "__main__":
