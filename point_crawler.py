@@ -49,6 +49,8 @@ class point_crawler:
         })
         try:
             r = requests.post(url, headers = headers, data = data)
+            print("receive: ", r.text)
+            print("receive headers: ", str(r.headers))
             return_msg = json.loads(r.text)
             if type(return_msg) != dict:
                 raise Exception("+++++return message is not a dict+++++")
