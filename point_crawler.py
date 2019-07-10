@@ -143,6 +143,7 @@ class point_crawler:
                     if success:
                         break
                     elif msg == IP_BANNED:
+                        print("change ip!")
                         change_ip()
                         time.sleep(7)
                     else:
