@@ -9,6 +9,7 @@ def try_food():
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
             "Referer" : "https://meishi.meituan.com/i/",
             "Accept" : "application/json",
+            "Cookie" : "ci=1;rvct=1;latlng=59.0112,116.1234;",
             "Content-Type" : "application/json",
             "x-requested-with" : "XMLHttpRequest"
         }
