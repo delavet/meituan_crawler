@@ -55,13 +55,14 @@ class point_crawler:
         try:
             r = requests.post(url, headers = headers, data = data)
             r_headers = r.headers
-            set_cookie = r_headers['Set-Cookie']
-            cookies = set_cookie.split(';')
-            for cookie in cookies:
-                if cookie.startswith("uuid"):
-                    constants.uuid = cookie.split('=')[1]
-                if cookie.startswith("client-id"):
-                    constants.client_id = cookie.split('=')[1]
+            if 'Set-Cookie' in r_headers.keys():
+                set_cookie = r_headers['Set-Cookie']
+                cookies = set_cookie.split(';')
+                for cookie in cookies:
+                    if cookie.startswith("uuid"):
+                        constants.uuid = cookie.split('=')[1]
+                    if cookie.startswith("client-id"):
+                        constants.client_id = cookie.split('=')[1]
             print("receive: ", r.text)
             print("receive headers: ", str(r.headers))
             return_msg = json.loads(r.text)
@@ -131,7 +132,7 @@ class point_crawler:
 
     
     def crawl_point(self):
-        rf = open('ids.pkl', 'rb+')
+        rf = open('ids.pkl', 'rb')
         ids = list(pickle.load(rf))
         rf.close()
         with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl', 'wb') as data_f:
