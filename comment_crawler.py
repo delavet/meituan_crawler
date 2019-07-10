@@ -64,7 +64,7 @@ class comment_crawler:
     def crawl_poi_comment(self):
         ret = []
         while True:
-            success_label, msg, ret = real_crawl_poi_comment()
+            success_label, msg, ret = self.real_crawl_poi_comment()
             if success_label:
                 break
             elif msg == IP_BANNED:
