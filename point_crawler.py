@@ -134,7 +134,7 @@ class point_crawler:
         rf = open('ids.pkl', 'rb')
         ids = list(pickle.load(rf))
         rf.close()
-        with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl') as data_f:
+        with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl', 'wb') as data_f:
             for p in range(20):
                 while True:
                     print("crawling point: ", self.get_latlon(),"; page: ",str(p))
