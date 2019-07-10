@@ -28,7 +28,14 @@ def try_food():
         wf.write(str(r.headers))
 
 
+def test_point_crawler():
+    p = point_crawler(39.1234, 117.1212)
+    p.get_result_json(0)
+    print(str(p.restaurants))
+
+
 if __name__ == "__main__":
-    try_food()
+    #try_food()
+    test_point_crawler()
     #p = point_crawler(39.1234, 117.1212)
     #pprint(p.get_result_json(0))
