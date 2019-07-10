@@ -118,7 +118,7 @@ class point_crawler:
                     continue
         except Exception as e:
             success = False
-            msg = OTHER_EXCEPTION
+            msg = IP_BANNED
             print("=====exception occurs when crawling points=====")
             print("=====the exception reason=====")
             print(e)
@@ -127,7 +127,7 @@ class point_crawler:
             jsn = json.loads(r.text)
             if type(jsn) == dict:
                 dict_jsn = dict(jsn)
-                if 'code' in dict_jsn.keys() and dict_jsn['code']==406:
+                if 'code' in dict_jsn.keys() and dict_jsn['code']==406 or r.status_code == 4:
                     msg = IP_BANNED
         finally:
             return success, msg
