@@ -131,7 +131,7 @@ class point_crawler:
 
     
     def crawl_point(self):
-        rf = open('ids.pkl', 'rb')
+        rf = open('ids.pkl', 'rb+')
         ids = list(pickle.load(rf))
         rf.close()
         with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl', 'wb') as data_f:
