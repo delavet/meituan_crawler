@@ -1,4 +1,4 @@
-{
+[{
     "avgPrice": 122,
     "avgScore": 4,
     "cateName": "江西菜",
@@ -75,4 +75,5 @@
     "ctPoi": "258827047357543871969565793342956101751_a4225765_c8_e18289896914140758670",
     "extraServiceIcons": [],
     "distance": "477m"
-}
+},
+{"avgPrice":0,"avgScore":0,"cateName":"炸串","channel":"food","showType":"","frontImg":"","lat":39.676826,"lng":116.821313,"name":"啊刚炸鸡（通州小务店）","poiid":"192843957","areaName":"通州区","poiImgExtra":{},"extraServiceTags":[{"icon":"","text":{"content":"支持买单","color":"#6cbab2","backgroundColor":""}}],"rotationTags":[],"ctPoi":"258827047357543871969565793342956101751_a192843957_c0_e15246193811956156837","extraServiceIcons":[],"distance":"66km"}]

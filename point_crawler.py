@@ -99,6 +99,7 @@ class point_crawler:
                     self.restaurants[poiid] = info
                 except Exception as e1:
                     print("!!!!!one unparsable result!!!!!")
+                    print(str(e1))
                     continue
         except Exception as e:
             success = False
