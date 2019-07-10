@@ -138,7 +138,7 @@ class point_crawler:
             for p in range(20):
                 while True:
                     print("crawling point: ", self.get_latlon(),"; page: ",str(p))
-                    success, msg = get_result_json(p)
+                    success, msg = self.get_result_json(p)
                     if success:
                         break
                     elif msg == IP_BANNED:
