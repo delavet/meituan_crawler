@@ -8,6 +8,11 @@ import string
 from ip_modifier import change_ip
 
 
+CRAWL_SUCCESS = 0
+IP_BANNED = -1
+OTHER_EXCEPTION = 1
+
+
 class comment_crawler:
     poi_id = 0
 
@@ -17,6 +22,8 @@ class comment_crawler:
 
     
     def real_crawl_poi_comment(self):
+        success = True
+        msg = CRAWL_SUCCESS
         url = constants.meituan_comment
         headers = {
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
@@ -43,21 +50,27 @@ class comment_crawler:
             print(e)
             print("=====exception message=====")
             print(r.text)
-            if 'code' in dict(json.loads(r.text)).keys() and dict(json.loads(r.text))['code'] == 406:
-                raise Exception("++++++NEED TO CHANGE IP ADDRESS+++++")
+            success = False
+            msg = OTHER_EXCEPTION
+            jsn = json.loads(r.text)
+            if type(jsn) == dict:
+                dict_jsn = dict(jsn)
+                if 'code' in dict_jsn.keys() and dict_jsn['code']==406:
+                    msg = IP_BANNED
         finally:
-            return ret
+            return success, msg, ret
 
     
     def crawl_poi_comment(self):
         ret = []
-        success_label = True
-        while success_label:
-            try:
-                ret = real_crawl_poi_comment()
-                success_label = False
-            except Exception as e:
+        while True:
+            success_label, msg, ret = real_crawl_poi_comment()
+            if success_label:
+                break
+            elif msg == IP_BANNED:
                 change_ip()
-                time.sleep(5)
+                time.sleep(7)
+            else:
+                time.sleep(7)         
         return ret
             

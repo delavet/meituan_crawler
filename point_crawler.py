@@ -9,6 +9,11 @@ from ip_modifier import change_ip
 from comment_crawler import comment_crawler
 
 
+CRAWL_SUCCESS = 0
+IP_BANNED = -1
+OTHER_EXCEPTION = 1
+
+
 class point_crawler:
     restaurants = {}
     latitude = 39.3
@@ -26,10 +31,12 @@ class point_crawler:
     
 
     def get_result_json(self, page):
+        success = True
+        msg = CRAWL_SUCCESS
         url = constants.meituan_near_restaurant
         headers = {
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
-            "Cookie" : "ci=1;rvct=1;latlng=" + str(self.latitude) + "," + str(self.longitude) + ";;uuid=e7cc30da-c5ce-457b-8be7-ac327f9bd7d0; client-id=b5674afa-a719-45a4-9109-ffe79b719e68",
+            "Cookie" : "ci=1;rvct=1;latlng=" + str(self.latitude) + "," + str(self.longitude) + ";",
             "Referer" : "https://meishi.meituan.com/i/",
             "Accept" : "application/json",
             "Content-Type" : "application/json",
@@ -92,14 +99,19 @@ class point_crawler:
                     print("!!!!!one unparsable result!!!!!")
                     continue
         except Exception as e:
+            success = False
+            msg = OTHER_EXCEPTION
             print("=====exception occurs when crawling points=====")
             print("=====the exception reason=====")
             print(e)
             print("=====exception message=====")
             print(r.text)
-            jsn = dict(json.loads(r.text))
-            if 'code' in jsn.keys() and jsn['code']==406:
-                raise Exception("+++++NEED TO CHANGE IP ADDRESS+++++")
+            jsn = json.loads(r.text)
+            if type(jsn) == dict:
+                dict_jsn = dict(jsn)
+                if 'code' in dict_jsn.keys() and dict_jsn['code']==406:
+                    msg = IP_BANNED
+                
 
     
     def crawl_point(self):
@@ -108,15 +120,17 @@ class point_crawler:
         rf.close()
         with open('ids.pkl', 'wb') as wf, open('data/'+ self.get_latlon() + '.pkl') as data_f:
             for p in range(20):
-                success_label = True
-                while success_label:
-                    try:
-                        get_result_json(p)
-                        success_label = False
-                    except Exception as e:
+                while True:
+                    print("crawling point: ", self.get_latlon(),"; page: ",str(p))
+                    success, msg = get_result_json(p)
+                    if success:
+                        break
+                    elif msg == IP_BANNED:
                         change_ip()
                         time.sleep(7)
-                time.sleep(7)
+                    else:
+                        time.sleep(7)
+                time.sleep(5)
             for id, info in self.restaurants.items():
                 if id in ids:
                     self.restaurants.pop(id)
