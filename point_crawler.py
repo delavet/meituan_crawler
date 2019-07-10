@@ -39,6 +39,7 @@ class point_crawler:
             cookie_str += "uuid="+constants.uuid+";"
         if constants.client_id != None:
             cookie_str += "client-id="+constants.client_id+";"
+        print("cookie:", cookie_str)
         headers = {
             "User-Agent" : "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36",
             "Cookie" : cookie_str,
@@ -128,6 +129,8 @@ class point_crawler:
                 dict_jsn = dict(jsn)
                 if 'code' in dict_jsn.keys() and dict_jsn['code']==406:
                     msg = IP_BANNED
+        finally:
+            return success, msg
                 
 
     
