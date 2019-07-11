@@ -62,6 +62,7 @@ class point_crawler:
                 for cookie in cookies:
                     if "uuid" in cookie:
                         constants.uuid = cookie.split('=')[1]
+                        print('uuid found: ', constants.uuid)
                     if "client-id" in cookie:
                         constants.client_id = cookie.split('=')[1]
             print("receive: ", r.text)
