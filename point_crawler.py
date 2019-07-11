@@ -135,10 +135,8 @@ class point_crawler:
 
     
     def crawl_point(self):
-        rf = open('ids.pkl', 'rb')
-        ids = list(pickle.load(rf))
-        rf.close()
-        wf = open('ids.pkl', 'wb')
+        ids = []
+        wf = open('ids/ids'+str(self.get_latlon())+'.pkl', 'wb')
         data_f = open('data/'+ self.get_latlon() + '.pkl', 'wb')
         try:
             for p in range(20):
@@ -155,11 +153,7 @@ class point_crawler:
                         time.sleep(7)
                 time.sleep(5)
             for id, info in self.restaurants.items():
-                if id in ids:
-                    self.restaurants.pop(id)
-                    continue
-                else:
-                    ids.append(id)
+                ids.append(id)
             pickle.dump(ids, wf)
             pickle.dump(self.restaurants, data_f)
         except Exception as e:

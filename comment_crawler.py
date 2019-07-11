@@ -15,6 +15,7 @@ OTHER_EXCEPTION = 1
 
 class comment_crawler:
     poi_id = 0
+    disable_cnt = 0
 
 
     def __init__(self, poi_id):
@@ -51,7 +52,7 @@ class comment_crawler:
             print("=====exception message=====")
             print(r.text)
             success = False
-            msg = OTHER_EXCEPTION
+            msg = IP_BANNED
             jsn = json.loads(r.text)
             if type(jsn) == dict:
                 dict_jsn = dict(jsn)
@@ -68,9 +69,13 @@ class comment_crawler:
             if success_label:
                 break
             elif msg == IP_BANNED:
+                disable_cnt += 1
                 change_ip()
                 time.sleep(7)
             else:
-                time.sleep(7)         
+                disable_cnt += 1
+                time.sleep(7)   
+            if disable_cnt > 10:
+                break      
         return ret
             
