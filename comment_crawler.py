@@ -64,6 +64,7 @@ class comment_crawler:
     
     def crawl_poi_comment(self):
         ret = []
+        disable_cnt = 0
         while True:
             success_label, msg, ret = self.real_crawl_poi_comment()
             if success_label:
