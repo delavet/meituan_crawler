@@ -60,9 +60,9 @@ class point_crawler:
                 set_cookie = r_headers['Set-Cookie']
                 cookies = set_cookie.split(';')
                 for cookie in cookies:
-                    if cookie.startswith("uuid"):
+                    if "uuid" in cookie:
                         constants.uuid = cookie.split('=')[1]
-                    if cookie.startswith("client-id"):
+                    if "client-id" in cookie:
                         constants.client_id = cookie.split('=')[1]
             print("receive: ", r.text)
             print("receive headers: ", str(r.headers))
