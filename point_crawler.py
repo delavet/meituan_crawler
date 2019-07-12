@@ -18,16 +18,24 @@ class point_crawler:
     restaurants = {}
     latitude = 39.3
     longitude = 116.3
+    i = 0
+    j = 0
 
 
-    def __init__(self, lat, lon):
+    def __init__(self, lat, lon, i, j):
         self.latitude = lat
         self.longitude = lon
+        self.i = i
+        self.j = j
     
 
     def get_latlon(self):
         return str(self.latitude) + "," + str(self
         .longitude)
+
+    
+    def get_index(self):
+        return str(self.i) + ',' + str(self.j)
     
 
     def get_result_json(self, page):
@@ -137,12 +145,12 @@ class point_crawler:
     
     def crawl_point(self):
         ids = []
-        wf = open('ids/ids'+str(self.get_latlon())+'.pkl', 'wb')
-        data_f = open('data/'+ self.get_latlon() + '.pkl', 'wb')
+        wf = open('ids/ids'+str(self.get_index())+'.pkl', 'wb')
+        data_f = open('data/'+ self.get_index() + '.pkl', 'wb')
         try:
             for p in range(20):
                 while True:
-                    print("crawling point: ", self.get_latlon(),"; page: ",str(p))
+                    print("crawling point: ", self.get_latlon(),"; ", self.get_index() ,"page: ",str(p))
                     success, msg = self.get_result_json(p)
                     if success:
                         break

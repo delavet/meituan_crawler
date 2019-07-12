@@ -17,7 +17,7 @@ def start_crawl():
         while lon < end_lon:
             print("=====INFO: cnt", cnt, "lat:", lat, ", lon:", lon, "=====")
             print("i = ", str(i), " ; j = ", str(j))
-            crawler = point_crawler(lat, lon)
+            crawler = point_crawler(lat, lon, i, j)
             try:
                 crawler.crawl_point()
             except Exception as e:
