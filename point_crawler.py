@@ -23,8 +23,8 @@ class point_crawler:
 
 
     def __init__(self, lat, lon, i, j):
-        self.latitude = lat
-        self.longitude = lon
+        self.latitude = round(lat, 2)
+        self.longitude = roung(lon, 2)
         self.i = i
         self.j = j
     
