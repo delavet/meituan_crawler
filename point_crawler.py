@@ -65,7 +65,7 @@ class point_crawler:
                         print('uuid found: ', constants.uuid)
                     if "client-id" in cookie:
                         constants.client_id = cookie.split('=')[1]
-            print("receive: ", r.text)
+            print("receive: ", r.text[:30])
             print("receive headers: ", str(r.headers))
             return_msg = json.loads(r.text)
             if type(return_msg) != dict:
