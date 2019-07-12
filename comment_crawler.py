@@ -75,7 +75,8 @@ class comment_crawler:
                 time.sleep(7)
             else:
                 disable_cnt += 1
-                time.sleep(7)   
+                time.sleep(7)
+            print("=====comment crawl: retry count %d=====" % disable_cnt) 
             if disable_cnt > 10:
                 break      
         return ret
