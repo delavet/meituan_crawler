@@ -9,8 +9,10 @@ def start_crawl():
     lat = init_lat
     lon = init_lon
     cnt = 0
-    i = int(input("start index i: "))
-    j = int(input("start index j: "))
+    i = 10
+    j = 0
+    #i = int(input("start index i: "))
+    #j = int(input("start index j: "))
     lat = init_lat + 0.15 * j
     lon = init_lon + 0.15 * i
     while lat < end_lat:
