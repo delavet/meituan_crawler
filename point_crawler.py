@@ -146,7 +146,7 @@ class point_crawler:
     def crawl_point(self):
         ids = []
         wf = open('ids/ids'+str(self.get_index())+'.pkl', 'wb')
-        data_f = open('data/sparse'+ self.get_index() + '.pkl', 'wb')
+        data_f = open('real_data/sparse'+ self.get_index() + '.pkl', 'wb')
         try:
             for p in range(20):
                 while True:

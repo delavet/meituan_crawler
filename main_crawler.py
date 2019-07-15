@@ -11,8 +11,8 @@ def start_crawl():
     cnt = 0
     i = int(input("start index i: "))
     j = int(input("start index j: "))
-    lat = init_lat + 0.2 * j
-    lon = init_lon + 0.2 * i
+    lat = init_lat + 0.15 * j
+    lon = init_lon + 0.15 * i
     while lat < end_lat:
         while lon < end_lon:
             print("=====INFO: cnt", cnt, "lat:", lat, ", lon:", lon, "=====")
@@ -25,9 +25,9 @@ def start_crawl():
                 print(e)
                 print('=====OUTSIDE EXCEPTION END=====')
                 continue
-            lon += 0.2
+            lon += 0.15
             i += 1
-        lat += 0.2
+        lat += 0.15
         j += 1
 
 
