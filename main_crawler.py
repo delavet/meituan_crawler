@@ -2,8 +2,8 @@ from point_crawler import point_crawler
 
 
 def start_crawl():
-    init_lat = 39.4300
-    init_lon = 115.4200
+    init_lat = 39.4500
+    init_lon = 115.4300
     end_lat = 41.0500
     end_lon = 117.5300
     lat = init_lat
