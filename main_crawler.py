@@ -10,7 +10,7 @@ def start_crawl():
     lon = init_lon
     cnt = 0
     i = 10
-    j = 0
+    j = 1
     #i = int(input("start index i: "))
     #j = int(input("start index j: "))
     lat = init_lat + 0.15 * j
