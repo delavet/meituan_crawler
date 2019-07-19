@@ -29,6 +29,7 @@ def start_crawl():
                 continue
             lon += 0.15
             i += 1
+        lon = init_lon
         lat += 0.15
         j += 1
 
